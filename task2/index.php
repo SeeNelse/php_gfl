@@ -1,18 +1,41 @@
 <?php
 
 include 'config.php';
-include 'templates/index_tmpl.php';
 include 'libs/Calc.php';
+include 'templates/index_tmpl.php';
 
 
 $calcObj = new Calc();
 
-$calcObj->setNumA(10);
+$calcObj->setNumA("10");
 $calcObj->setNumB(5);
 
 
-$calcObj->sum();
+echo $calcObj->sum() . "<br>";
 
-$calcObj->minus();
+echo $calcObj->subtraction() . "<br>";
+
+echo $calcObj->multiplication() . "<br>";
+
+echo $calcObj->division() . "<br>";
+
+$calcObj->sqrtFnc();
+
+echo $calcObj->percent() . "<br>";
+
+$calcObj->squared();
+
+$calcObj->fraction();
+
+$calcObj->ms();
+
+$calcObj->mPlus();
+
+$calcObj->mMinus();
+
+$calcObj->mc();
+
+
+
 
 ?>
