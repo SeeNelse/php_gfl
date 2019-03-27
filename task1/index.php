@@ -6,8 +6,9 @@
 	$successMsg = '';
 	$deleteMsg = '';
 	
+	$dirPerm = str_split(substr(sprintf('%o', fileperms(DIR_PATH)), -4));
 
-	if (isset($_POST['buttonUpload'])){
+	if (isset($_POST['buttonUpload'])) {
 		addFile(DIR_PATH);
 	}
 
@@ -15,7 +16,11 @@
 		deleteFile($_POST['fileName'], DIR_PATH);
 	}
 
-	$filesArray = getFilesInfo(DIR_PATH);
+	if (intval($dirPerm[3]) < 4) {
+		$filesArray = 'perm';
+	} else {
+		$filesArray = getFilesInfo(DIR_PATH);
+	}
 
 	include 'templates/index_template.php';
 ?>

@@ -19,8 +19,17 @@
 				<input name="fileUpload" type="file" class="form__upload">
 				<input name="buttonUpload" type="submit" class="btn btn-dark" >
 				<?php 
-					if (!$filesArray || gettype($filesArray) != 'array') {
+					// if ($filesArray == "error") {
+					// 	$errorMsg = 'Permission denied';
+					// } else if (!$filesArray || gettype($filesArray) != 'array') {
+					// 	var_dump($filesArray);
+					// 	$errorMsg = 'No files exist';
+					// }
+					if (count($filesArray) == 0) {
 						$errorMsg = 'No files exist';
+					}
+					if ($filesArray == 'perm') {
+						$errorMsg = 'Permission denied';
 					}
 
 					if ($deleteMsg) { // Delete message

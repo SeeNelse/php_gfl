@@ -30,17 +30,18 @@ function addFile($dirPath) {
 	}
 
 	if (is_uploaded_file($fileTempName)) {
-		move_uploaded_file($fileTempName, $uploadFile);
-		chmod($uploadFile, 0777);
+		if (move_uploaded_file($fileTempName, $uploadFile)) {
+			chmod($uploadFile, 0777);
+		}
 		return $successMsg = 'File upload!';
 	}
 }
 
 
 function getFilesInfo($dirPath) {
-	if (!scandir($dirPath)) {
-		return $errorMsg = "Permission denied";
-	}
+	// if (!scandir($dirPath)) {
+	// 	return $errorMsg = "error";
+	// }
 	$filesList = scandir($dirPath);
 	$filesArray = [];
 	$arrayId = 0;
