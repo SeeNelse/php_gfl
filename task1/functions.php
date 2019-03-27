@@ -39,9 +39,6 @@ function addFile($dirPath) {
 
 
 function getFilesInfo($dirPath) {
-	// if (!scandir($dirPath)) {
-	// 	return $errorMsg = "error";
-	// }
 	$filesList = scandir($dirPath);
 	$filesArray = [];
 	$arrayId = 0;
