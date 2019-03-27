@@ -4,33 +4,24 @@ class Calc
 {
   private $numA;
   private $numB;
+
   private $msA;
   private $msB;
+
   private $msATemp;
   private $msBTemp;
-
-  private $sumResult;
-  private $subtractionResult;
-  private $multiplicationResult;
-  private $divisionResult;
-
-
   
-
   public function __conctruct ()
   {
 
     $this->numA = null;
     $this->numB = null;
+
     $this->msA = null;
     $this->msB = null;
+
     $this->msATemp = null;
     $this->msBTemp = null;
-
-    $this->sumResult = null;
-    $this->subtractionResult = null;
-    $this->multiplicationResult = null;
-    $this->divisionResult = null;
 
   }
 
@@ -60,8 +51,7 @@ class Calc
   {
     if ($this->numA && $this->numB)
     {
-      $this->sumResult = $this->numA + $this->numB;
-      return $this->sumResult;
+      return $this->numA + $this->numB;
     } else {
       echo "Error!" . '<br>';
       return false;
@@ -72,8 +62,7 @@ class Calc
   {
     if ($this->numA && $this->numB)
     {
-      $this->subtractionResult = $this->numA - $this->numB;
-      return $this->subtractionResult;
+      return $this->numA - $this->numB;
     } else {
       echo "Error!" . '<br>';
       return false;
@@ -84,8 +73,7 @@ class Calc
   {
     if ($this->numA && $this->numB)
     {
-      $this->multiplicationResult = $this->numA * $this->numB;
-      return $this->multiplicationResult;
+      return $this->numA * $this->numB;
     } else {
       echo "Error!" . '<br>';
       return false;
@@ -96,8 +84,7 @@ class Calc
   {
     if ($this->numA && $this->numB)
     {
-      $this->divisionResult = $this->numA / $this->numB;
-      return $this->divisionResult;
+      return $this->numA / $this->numB;
     } else {
       echo "Error!" . '<br>';
       return false;
