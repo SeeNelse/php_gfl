@@ -7,28 +7,29 @@ $calcObj->setNumA("10");
 $calcObj->setNumB(5);
 
 
-echo $calcObj->sum() . "<br>";
+echo 'sum: ' . $calcObj->sum() . "<br>";
 
-echo $calcObj->subtraction() . "<br>";
+echo 'subtraction: ' . $calcObj->subtraction() . "<br>";
 
-echo $calcObj->multiplication() . "<br>";
+echo 'multiplication: ' . $calcObj->multiplication() . "<br>";
 
-echo $calcObj->division() . "<br>";
+echo 'division: ' . $calcObj->division() . "<br>";
 
-$calcObj->sqrtFnc();
+echo 'sqrtFnc: ' . $calcObj->sqrtFnc(). "<br>";
 
-echo $calcObj->percent() . "<br>";
+echo 'percent: ' . $calcObj->percent() . "<br>";
 
-$calcObj->squared();
+echo 'squared: ' . $calcObj->squared(). "<br>";
 
-$calcObj->fraction();
+echo 'fraction: ' . $calcObj->fraction(). "<br>";
 
-$calcObj->ms();
+echo 'ms: ' . $calcObj->ms(). "<br>";
 
-$calcObj->mPlus();
+echo 'mPlus: ' . $calcObj->mPlus(). "<br>";
 
-$calcObj->mMinus();
+echo 'mMinus: ' . $calcObj->mMinus(). "<br>";
 
-$calcObj->mc();
+echo 'mc: ' . $calcObj->mc(). "<br>";
+
 
 ?>

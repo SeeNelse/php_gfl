@@ -6,10 +6,7 @@ class Calc
   private $numB;
 
   private $msA;
-  private $msB;
-
   private $msATemp;
-  private $msBTemp;
   
   public function __conctruct ()
   {
@@ -31,7 +28,6 @@ class Calc
     {
       return $this->numA = $numberA;
     } else {
-      echo "Number 1($numberA) is not a number" . '<br>';
       return false;
     }
   }
@@ -42,7 +38,6 @@ class Calc
     {
       return $this->numB = $numberB;
     } else {
-      echo "Number 2($numberB) is not a number" . '<br>';
       return false;
     }
   }
@@ -53,7 +48,6 @@ class Calc
     {
       return $this->numA + $this->numB;
     } else {
-      echo "Error!" . '<br>';
       return false;
     }
   }
@@ -64,7 +58,6 @@ class Calc
     {
       return $this->numA - $this->numB;
     } else {
-      echo "Error!" . '<br>';
       return false;
     }
   }
@@ -75,7 +68,6 @@ class Calc
     {
       return $this->numA * $this->numB;
     } else {
-      echo "Error!" . '<br>';
       return false;
     }
   }
@@ -86,20 +78,16 @@ class Calc
     {
       return $this->numA / $this->numB;
     } else {
-      echo "Error!" . '<br>';
       return false;
     }
   }
 
   function sqrtFnc ()
   {
-    if ($this->numA && $this->numB)
+    if ($this->numA)
     {
-      echo "square root of the number $this->numA = " . sqrt($this->numA) . '<br>';
-      echo "square root of the number $this->numB = " . sqrt($this->numB) . '<br>';
-      return true;
+      return round(sqrt($this->numA), 2);
     } else {
-      echo "Error!" . '<br>';
       return false;
     }
   }
@@ -110,20 +98,16 @@ class Calc
     {
       return ($this->numA / 100) * $this->numB;
     } else {
-      echo "Error!" . '<br>';
       return false;
     }
   }
 
   function squared () 
   {
-    if ($this->numA && $this->numB)
+    if ($this->numA)
     {
-      echo "$this->numA squared = " . $this->numA * $this->numA . '<br>';
-      echo "$this->numB squared = " . $this->numB * $this->numB . '<br>';
-      return true;
+      return $this->numA * $this->numA;
     } else {
-      echo "Error!" . '<br>';
       return false;
     }
   }
@@ -132,84 +116,56 @@ class Calc
   {
     if ($this->numA && $this->numB)
     {
-      echo "$this->numA fraction = " . 1 / $this->numA . '<br>';
-      echo "$this->numB fraction = " . 1 / $this->numB . '<br>';
-      return true;
+      return round((1 / $this->numA), 2);
     } else {
-      echo "Error!" . '<br>';
       return false;
     }
   }
 
   function ms ()
   {
-    if ($this->numA && $this->numB)
+    if ($this->numA)
     {
-      $this->msA = $this->numA;
-      $this->msB = $this->numB;
-      echo "$this->numA saved" . '<br>';
-      echo "$this->numB saved" . '<br>';
-      return true;
+      return $this->msA = $this->numA;
     } else {
-      echo "Error!" . '<br>';
       return false;
     }
   }
 
   function mPlus ()
   {
-    if ($this->msA && $this->msB) {
-      if ($this->msATemp && $this->msBTemp) 
+    if ($this->msA) {
+      if ($this->msATemp) 
       {
         $this->msATemp = $this->msATemp + $this->msA;
-        $this->msBTemp = $this->msBTemp + $this->msB;
-        echo "m+(msA) = $this->msATemp" . '<br>';
-        echo "m+(msB) = $this->msBTemp" . '<br>';
-        return true;
+        return $this->msATemp;
       }
       $this->msATemp = $this->msA + $this->msA;
-      $this->msBTemp = $this->msB + $this->msB;
-      echo "m+(msA) = $this->msATemp" . '<br>';
-      echo "m+(msB) = $this->msBTemp" . '<br>';
-      return true;
+      return $this->msATemp;
     } else {
-      echo "Error! Memory cells is empty" . '<br>';
       return false;
     }
   }
 
   function mMinus ()
   {
-    if ($this->msA && $this->msB) {
-      if ($this->msATemp && $this->msBTemp) 
+    if ($this->msA) {
+      if ($this->msATemp) 
       {
         $this->msATemp = $this->msATemp - $this->msA;
-        $this->msBTemp = $this->msBTemp - $this->msB;
-        echo "m-(msA) = $this->msATemp" . '<br>';
-        echo "m-(msB) = $this->msBTemp" . '<br>';
-        return true;
+        return $this->msATemp;
       }
       $this->msATemp = $this->msA - $this->msA;
-      $this->msBTemp = $this->msB - $this->msB;
-      echo "m-(msA) = $this->msATemp" . '<br>';
-      echo "m-(msB) = $this->msBTemp" . '<br>';
-      return true;
+      return $this->msATemp;
     } else {
-      echo "Error! Memory cells is empty" . '<br>';
       return false;
     }
   }
 
   function mc () {
-    if ($this->msA && $this->msB) {
-      $this->msA = null;
-      $this->msB = null;
-      $this->msATemp = null;
-      $this->msBTemp = null;
-      echo "Memory cells are freed" . '<br>';
-      return true;
+    if ($this->msA) {
+      return $this->msA = null;
     } else {
-      echo "Error! Memory cells is empty" . '<br>';
       return false;
     }
   }
