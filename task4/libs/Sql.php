@@ -2,18 +2,21 @@
 
 Class Sql {
 
-  private $fieldSql;
   private $tableSql;
+
+  private $fieldSql;
   private $whereSql;
-  private $fromSql;
   private $limitSql;
+
+  // private $
+
+  private $query;
 
   public function __construct() 
   {
     $this->fieldSql = [];
-    $this->tableSql = [];
-    $this->whereSql = [];
-    $this->fromSql = '';
+    $this->tableSql = '';
+    $this->whereSql = '';
     $this->limitSql = 1;
   }
 
@@ -34,7 +37,7 @@ Class Sql {
     $table = trim($table);
     if ($table != '*' && $table)
     {
-      array_push($this->tableSql, $table);
+      $this->tableSql = $table;
       return true;
     }
     return false;
@@ -45,7 +48,7 @@ Class Sql {
     $where = trim($where);
     if ($where != '*' && $where)
     {
-      array_push($this->whereSql, $where);
+      $this->whereSql = $where;
       return true;
     }
     return false;
@@ -53,11 +56,10 @@ Class Sql {
 
   public function setLimit($limit) 
   {
-    $where = trim($where);
-    if ($where != '*' && $where)
-    {
-      array_push($this->whereSql, $where);
-      return true;
+    if (is_numeric($limit)) {
+      $limit = (int)trim($limit);
+      $this->limitSql = $limit;
+      return;
     }
     return false;
   }
@@ -92,21 +94,24 @@ Class Sql {
 
   public function getLimit() 
   {
-    if ($this->limitSql) 
+    return $this->limitSql;
+  }
+
+  public function selectDB ()
+  {
+    if ($this->fieldSql && $this->tableSql && $this->whereSql) 
     {
-      return $this->limitSql;
+      return $this->query .= "SELECT ".$this->valueEach($this->fieldSql)." FROM $this->tableSql WHERE $this->whereSql Limit $this->limitSql;";
     }
     return false;
   }
 
-  public function selectDB () //  "SELECT ".$this->getField()." FROM ".$this->getTable()." WHERE ".$this->getWhere()." Limit ".$this->getLimit()
-  {
-    return;
-  }
-
   public function insertDB () 
   {
-
+    if ($this->tableSql)
+    {
+      // return $this->query .= "INSERT INTO $this->tableSql (".$this->valueEach($this->fieldSql).") VALUES ('$name', '$descr', '$price');";
+    }
   }
 
   public function deleteDB () 
@@ -117,6 +122,11 @@ Class Sql {
   public function updateDB () 
   {
 
+  }
+
+  private function valueEach($arr) {
+    $value = trim(implode(",", $arr), ',');
+    return $value;
   }
 
 }

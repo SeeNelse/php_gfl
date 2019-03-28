@@ -9,13 +9,13 @@ $sqlClass = new Sql();
 $sqlClass->setField(' name');
 $sqlClass->setField('*');
 $sqlClass->setField('name2');
-$sqlClass->setField('name3, name5');
-$sqlClass->setField('');
-$sqlClass->setField(' ');
+$sqlClass->setField('name3, name5, ');
 
-var_dump($sqlClass->getField());
+$sqlClass->setTable('table ');
 
-// $sqlClass->setWhere('task4');
+$sqlClass->setWhere(' where');
+
+var_dump($sqlClass->selectDB());
 
 
 ?>
