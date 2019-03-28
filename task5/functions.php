@@ -2,17 +2,17 @@
 
 function addFunc(iWorkData $object, $key, $val)
 {
-  $object->saveData($key, $val);
+  return $object->saveData($key, $val);
 }
 
 function getFunc(iWorkData $object, $key)
 {
-  $object->getData($key);
+  return $object->getData($key);
 }
 
 function deleteFunc(iWorkData $object, $key)
 {
-  $object->deleteData($key);
+  return $object->deleteData($key);
 }
 
 ?>

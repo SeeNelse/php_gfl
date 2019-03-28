@@ -200,6 +200,7 @@ Class Sql {
     {
       array_push($var, $val);
     }
+    ar($var);
     return $var;
   }
 

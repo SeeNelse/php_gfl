@@ -22,5 +22,6 @@ echo var_dump($sqlClass->insertDB()) . "<br><br><br>";
 echo var_dump($sqlClass->deleteDB()) . "<br><br><br>";
 echo var_dump($sqlClass->updateDB()) . "<br><br><br>";
 
+phpinfo();
 
 ?>
