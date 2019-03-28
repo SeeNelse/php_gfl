@@ -3,30 +3,36 @@
 Class Sql {
 
   private $tableSql;
+  private $whereSql;
 
   private $fieldSql;
-  private $whereSql;
   private $limitSql;
 
-  // private $
+  private $insertSql;
 
   private $query;
+  private $valuesSql;
+
+  private $updSetSql;
 
   public function __construct() 
   {
-    $this->fieldSql = [];
     $this->tableSql = '';
     $this->whereSql = '';
+
+    $this->fieldSql = [];
     $this->limitSql = 1;
+
+    $this->insertSql = [];
+    $this->valuesSql = [];
+
+    $this->updSetSql = '';
   }
 
   //setters
   public function setField($field) 
   {
-    $field = trim($field);
-    if ($field != '*' && $field)
-    {
-      array_push($this->fieldSql, $field);
+    if ($this->fieldSql = $this->arrayPush($this->fieldSql, $field)) {
       return true;
     }
     return false;
@@ -64,6 +70,33 @@ Class Sql {
     return false;
   }
 
+  public function setInsert($insert)
+  {
+    if ($this->insertSql = $this->arrayPush($this->insertSql, $insert)) {
+      return true;
+    }
+    return false;
+  }
+
+  public function setValues($values)
+  {
+    if ($this->valuesSql = $this->arrayPush($this->valuesSql, $values)) {
+      return true;
+    }
+    return false;
+  }
+
+  public function setUpdSet($updSetSql) 
+  {
+    $updSetSql = trim($updSetSql);
+    if ($updSetSql != '*' && $updSetSql)
+    {
+      $this->updSetSql = $updSetSql;
+      return true;
+    }
+    return false;
+  }
+
   //getters
   public function getField() 
   {
@@ -97,6 +130,34 @@ Class Sql {
     return $this->limitSql;
   }
 
+  public function getInsert() 
+  {
+    if ($this->insertSql) 
+    {
+      return $this->insertSql;
+    }
+    return false;
+  }
+
+  public function getValues() 
+  {
+    if ($this->valuesSql) 
+    {
+      return $this->valuesSql;
+    }
+    return false;
+  }
+
+  public function getUpdSet() 
+  {
+    if ($this->updSetSql) 
+    {
+      return $this->updSetSql;
+    }
+    return false;
+  }
+
+  //methods
   public function selectDB ()
   {
     if ($this->fieldSql && $this->tableSql && $this->whereSql) 
@@ -108,26 +169,46 @@ Class Sql {
 
   public function insertDB () 
   {
-    if ($this->tableSql)
+    if ($this->tableSql && $this->insertSql && $this->valuesSql)
     {
-      // return $this->query .= "INSERT INTO $this->tableSql (".$this->valueEach($this->fieldSql).") VALUES ('$name', '$descr', '$price');";
+      return $this->query .= "INSERT INTO $this->tableSql (".$this->valueEach($this->insertSql).") VALUES (".$this->valueEach($this->valuesSql).");";
     }
+    return false;
   }
 
   public function deleteDB () 
   {
-
+    if ($this->tableSql && $this->whereSql) 
+    {
+      return $this->query .= "DELETE FROM $this->tableSql WHERE $this->whereSql;";
+    }
+    return false;
   }
 
   public function updateDB () 
   {
-
+    if ($this->tableSql && $this->whereSql && $this->updSetSql) {
+      return "UPDATE $this->tableSql SET $this->updSetSql WHERE $this->whereSql";
+    }
+    return false;
   }
 
-  private function valueEach($arr) {
+  private function arrayPush($var, $val)
+  {
+    $val = trim($val);
+    if ($val != '*' && $val)
+    {
+      array_push($var, $val);
+    }
+    return $var;
+  }
+
+  private function valueEach($arr) 
+  {
     $value = trim(implode(",", $arr), ',');
     return $value;
   }
+
 
 }
 
