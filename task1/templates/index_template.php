@@ -15,23 +15,15 @@
 		</nav>
 		<div class="container main">
 			<form enctype="multipart/form-data" action="index.php" method="POST" class="form">
-				<?php if (!$filesArray == 'perm') { ?>
 				<input type="hidden" name="MAX_FILE_SIZE" value="2000000" >
 				<input name="fileUpload" type="file" class="form__upload">
 				<input name="buttonUpload" type="submit" class="btn btn-dark" >
 				<?php 
-				}
-					// if ($filesArray == "error") {
-					// 	$errorMsg = 'Permission denied';
-					// } else if (!$filesArray || gettype($filesArray) != 'array') {
-					// 	var_dump($filesArray);
-					// 	$errorMsg = 'No files exist';
-					// }
 					if (count($filesArray) == 0) {
 						$errorMsg = 'No files exist';
 					}
-					if ($filesArray == 'perm') {
-						$errorMsg = 'Permission denied';
+					if ($permMsg) {
+						$errorMsg = $permMsg;
 					}
 
 					if ($deleteMsg) { // Delete message

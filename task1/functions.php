@@ -1,12 +1,17 @@
 <?php
 
 function addFile($dirPath) {
+	global $errorMsg;
+	global $successMsg;
+
+	if (!permCheck()) {
+		global $permMsg;
+		return $permMsg = 'Permission denied';
+	}
 	$fileName = $_FILES['fileUpload']['name'];
 	$fileTempName = $_FILES['fileUpload']['tmp_name'];
 	$uploadFile = $dirPath . basename($fileName);
 	$fileError = $_FILES['fileUpload']['error'];
-	global $errorMsg;
-	global $successMsg;
 
 	switch ($fileError) {
     case 1:
@@ -39,6 +44,10 @@ function addFile($dirPath) {
 
 
 function getFilesInfo($dirPath) {
+	if (!permCheck()) {
+		global $permMsg;
+		return $permMsg = 'Permission denied';
+	}
 	$filesList = scandir($dirPath);
 	$filesArray = [];
 	$arrayId = 0;
@@ -77,6 +86,15 @@ function sizeСonversion($size) {
 		return $finalVal = number_format($size / 1024, 2) . ' kb';
 	}
 	return $size . ' b';
+}
+
+function permCheck() {
+	$dirPerm = substr(decoct(fileperms(DIR_PATH)), -3);
+	if (intval($dirPerm[2]) < 5) {
+		return false;
+	} else {
+		return true;
+	}
 }
 
 ?>
