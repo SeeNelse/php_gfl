@@ -4,9 +4,8 @@ class Calc
 {
   private $numA;
   private $numB;
-
-  private $msA;
-  private $msATemp;
+  private $ms;
+  private $msTemp;
   
   public function __conctruct ()
   {
@@ -14,11 +13,9 @@ class Calc
     $this->numA = null;
     $this->numB = null;
 
-    $this->msA = null;
-    $this->msB = null;
+    $this->ms = null;
 
-    $this->msATemp = null;
-    $this->msBTemp = null;
+    $this->msTemp = null;
 
   }
 
@@ -126,7 +123,7 @@ class Calc
   {
     if ($this->numA)
     {
-      return $this->msA = $this->numA;
+      return $this->ms = $this->numA;
     } else {
       return false;
     }
@@ -134,14 +131,14 @@ class Calc
 
   function mPlus ()
   {
-    if ($this->msA) {
-      if ($this->msATemp) 
+    if ($this->ms) {
+      if ($this->msTemp) 
       {
-        $this->msATemp = $this->msATemp + $this->msA;
-        return $this->msATemp;
+        $this->msTemp = $this->msTemp + $this->ms;
+        return $this->msTemp;
       }
-      $this->msATemp = $this->msA + $this->msA;
-      return $this->msATemp;
+      $this->msTemp = $this->ms + $this->ms;
+      return $this->msTemp;
     } else {
       return false;
     }
@@ -149,22 +146,22 @@ class Calc
 
   function mMinus ()
   {
-    if ($this->msA) {
-      if ($this->msATemp) 
+    if ($this->ms) {
+      if ($this->msTemp) 
       {
-        $this->msATemp = $this->msATemp - $this->msA;
-        return $this->msATemp;
+        $this->msTemp = $this->msTemp - $this->ms;
+        return $this->msTemp;
       }
-      $this->msATemp = $this->msA - $this->msA;
-      return $this->msATemp;
+      $this->msTemp = $this->ms - $this->ms;
+      return $this->msTemp;
     } else {
       return false;
     }
   }
 
   function mc () {
-    if ($this->msA) {
-      return $this->msA = null;
+    if ($this->ms) {
+      return $this->ms = null;
     } else {
       return false;
     }
