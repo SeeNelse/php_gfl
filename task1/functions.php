@@ -63,6 +63,10 @@ function getFilesInfo($dirPath) {
 }
 
 function deleteFile($fileName, $dirPath) {
+	if (!permCheck()) {
+		global $permMsg;
+		return $permMsg = 'Permission denied';
+	}
 	global $deleteMsg;
 	global $errorMsg;
 	$fileFullPath = $dirPath . $fileName;
