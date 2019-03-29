@@ -27,6 +27,8 @@ Class Sql {
     $this->valuesSql = [];
 
     $this->updSetSql = '';
+
+    $this->query = '';
   }
 
   //setters
@@ -157,12 +159,16 @@ Class Sql {
     return false;
   }
 
+  public function getQuery() {
+    return $this->query;
+  }
+
   //methods
   public function selectDB ()
   {
     if ($this->fieldSql && $this->tableSql && $this->whereSql) 
     {
-      return $this->query .= "SELECT ".$this->valueEach($this->fieldSql)." FROM $this->tableSql WHERE $this->whereSql Limit $this->limitSql;";
+      return $this->query = "SELECT ".$this->valueEach($this->fieldSql)." FROM $this->tableSql WHERE '$this->whereSql' Limit $this->limitSql;";;
     }
     return false;
   }
@@ -171,7 +177,7 @@ Class Sql {
   {
     if ($this->tableSql && $this->insertSql && $this->valuesSql)
     {
-      return $this->query .= "INSERT INTO $this->tableSql (".$this->valueEach($this->insertSql).") VALUES (".$this->valueEach($this->valuesSql).");";
+      return $this->query = "INSERT INTO $this->tableSql (".$this->valueEach($this->insertSql).") VALUES (".$this->valueEach($this->valuesSql).");";
     }
     return false;
   }
@@ -180,7 +186,7 @@ Class Sql {
   {
     if ($this->tableSql && $this->whereSql) 
     {
-      return $this->query .= "DELETE FROM $this->tableSql WHERE $this->whereSql;";
+      return $this->query = "DELETE FROM $this->tableSql WHERE $this->whereSql;";
     }
     return false;
   }
@@ -188,7 +194,7 @@ Class Sql {
   public function updateDB () 
   {
     if ($this->tableSql && $this->whereSql && $this->updSetSql) {
-      return "UPDATE $this->tableSql SET $this->updSetSql WHERE $this->whereSql";
+      return $this->query = "UPDATE $this->tableSql SET $this->updSetSql WHERE $this->whereSql";
     }
     return false;
   }
@@ -200,13 +206,12 @@ Class Sql {
     {
       array_push($var, $val);
     }
-    ar($var);
     return $var;
   }
 
   private function valueEach($arr) 
   {
-    $value = trim(implode(",", $arr), ',');
+    $value = "'".trim(implode(",", $arr), ','). "'";
     return $value;
   }
 
