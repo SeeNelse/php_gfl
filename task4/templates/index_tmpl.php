@@ -10,30 +10,51 @@ function ar($arr)
 
 // $sqlClass = new Sql();
 // $sqlClass = new Mysql();
+// $sqlClass->setField('Name');
 // $sqlClass->setField('Descr');
-// $sqlClass->setField('name3, name5, ');
 
 // $sqlClass->setInsert('Name');
 // $sqlClass->setInsert('Descr');
 
 // $sqlClass->setValues('Vlad11');
-// $sqlClass->setValues('Suuup1221');
+// $sqlClass->setValues('12345');
 
 // $sqlClass->setTable('task4');
 
-// $sqlClass->setUpdSet("Descr='AAAAGAAA'"); 
-// $sqlClass->setWhere("Name='Vlad11'"); 
+// $sqlClass->setUpdSet("Descr=''"); 
+// $sqlClass->setWhere("Descr='12345'"); 
 // $sqlClass->setLimit("10"); 
 
 // $sqlClass->selectDB();
 
 
-// echo var_dump($sqlClass->selectDB()) . "<br><br><br>"; // mysql_fetch_assoc только для него
-// echo var_dump($sqlClass->insertDB()) . "<br><br><br>"; // написать проверку возвращения $tableRow = mysql_fetch_assoc($result);
+// echo var_dump($sqlClass->selectDB()) . "<br><br><br>"; 
+// echo var_dump($sqlClass->insertDB()) . "<br><br><br>";
 // echo var_dump($sqlClass->deleteDB()) . "<br><br><br>";
 // echo var_dump($sqlClass->updateDB()) . "<br><br><br>";
 
-// $sqlClass->sendQuery();
+
 // var_dump($sqlClass->connect());
 
 // var_dump($sqlClass);
+
+
+// $psqlClass = new Postgresql();
+
+// $psqlClass->setField('Name');
+
+// $psqlClass->setTable('task4');
+// $psqlClass->setWhere("'Name'='V'");
+// $psqlClass->setLimit("10"); 
+
+// echo var_dump($psqlClass->selectDB()) . "<br><br><br>"; 
+// echo var_dump($psqlClass->insertDB()) . "<br><br><br>"; 
+// echo var_dump($psqlClass->deleteDB()) . "<br><br><br>";
+// echo var_dump($psqlClass->updateDB()) . "<br><br><br>";
+
+// $psqlClass->connect();
+
+// SELECT 'Descr' FROM task4 WHERE 'Name'='V'
+
+// DELETE FROM task4 WHERE 'Name'='V';
+

@@ -6,23 +6,26 @@ Class Postgresql extends Sql {
   public function __construct() 
   {
     parent::__construct();
-    $this->dbConnect = '';
+    $this->dbConnect = pg_connect("host=".PG_SERVER." dbname=".PG_DB." user=".PG_USER." password=".PG_PASS);
+
   }
 
   public function connect() 
   {
-    $this->dbConnect = mysql_connect(MYSQL_SERVER,MYSQL_USER,MYSQL_PASS);
-    if ($this->dbConnect)
+    if ($this->dbConnect) 
     {
-      mysql_select_db(MYSQL_DB, $this->dbConnect);
-      $queryResult = mysql_query($this->getQuery(), $this->dbConnect);
-      if (strstr($this->getQuery(), 'SELECT')) {
-        return mysql_fetch_assoc($queryResult);;
-      }
-      if ($queryResult) {
-        return true;
-      }
-      return false;
+      $result = pg_query($this->getQuery());
+      $line = pg_fetch_array($result, null, PGSQL_ASSOC);
+      echo '<pre>'; echo var_export($line); echo'</pre>';
+      // while ($line = pg_fetch_array($result, null, PGSQL_ASSOC)) {
+      //   echo "\t<tr>\n";
+      //   foreach ($line as $col_value) {
+      //       echo "\t\t<td>$col_value</td>\n";
+      //   }
+      //   echo "\t</tr>\n";
+      // }
+      // echo '<pre>'; echo var_export($line); echo'</pre>';
+      return true;
     }
     return false;
   }

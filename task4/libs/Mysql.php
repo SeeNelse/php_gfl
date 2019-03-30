@@ -6,20 +6,28 @@ Class Mysql extends Sql {
   public function __construct() 
   {
     parent::__construct();
-    $this->dbConnect = '';
+    $this->dbConnect = mysql_connect(MYSQL_SERVER,MYSQL_USER,MYSQL_PASS);
   }
 
   public function connect() 
   {
-    $this->dbConnect = mysql_connect(MYSQL_SERVER,MYSQL_USER,MYSQL_PASS);
     if ($this->dbConnect)
     {
       mysql_select_db(MYSQL_DB, $this->dbConnect);
-      $queryResult = mysql_query($this->getQuery(), $this->dbConnect);
+      $sqlResult = mysql_query($this->getQuery(), $this->dbConnect);
+
       if (strstr($this->getQuery(), 'SELECT')) {
-        return mysql_fetch_assoc($queryResult);;
+        $i=0;
+        $returnArr = [];
+        while ($answerItem = mysql_fetch_assoc($sqlResult)) {
+          foreach ($answerItem as $key => $val) {
+            $returnArr[$i][$key] = $val;
+          }
+          $i++;
+        }
+        return $returnArr;
       }
-      if ($queryResult) {
+      if ($sqlResult) {
         return true;
       }
       return false;

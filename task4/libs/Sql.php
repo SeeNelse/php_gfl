@@ -168,7 +168,7 @@ Class Sql {
   {
     if ($this->fieldSql && $this->tableSql && $this->whereSql) 
     {
-      return $this->query = "SELECT ".$this->valueEach($this->fieldSql, false)." FROM $this->tableSql WHERE $this->whereSql Limit $this->limitSql;";;
+      return $this->query = "SELECT ".$this->valueEach($this->fieldSql, true)." FROM $this->tableSql WHERE $this->whereSql Limit $this->limitSql;";;
     }
     return false;
   }
