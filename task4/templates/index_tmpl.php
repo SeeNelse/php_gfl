@@ -1,61 +1,39 @@
 <?php 
+function ar($arr)
+{
+  static $int=0;
+  echo '<pre><b style="background: red;padding: 1px 5px; color: #fff">'.$int.'</b> ';
+  var_export($arr);
+  echo '</pre>';
+  $int++;
+}
 
 // $sqlClass = new Sql();
-$sqlClass = new Mysql();
-$sqlClass->setField('Vasya');
+// $sqlClass = new Mysql();
+// $sqlClass->setField('Descr');
 // $sqlClass->setField('name3, name5, ');
 
-// $sqlClass->setInsert('col1');
-// $sqlClass->setInsert('col2');
+// $sqlClass->setInsert('Name');
+// $sqlClass->setInsert('Descr');
 
-// $sqlClass->setValues('val1');
-// $sqlClass->setValues('val2');
+// $sqlClass->setValues('Vlad11');
+// $sqlClass->setValues('Suuup1221');
 
-$sqlClass->setTable('task4');
+// $sqlClass->setTable('task4');
 
-$sqlClass->setWhere('Descr'); 
-
-// $sqlClass->setUpdSet('valueUPD'); 
+// $sqlClass->setUpdSet("Descr='AAAAGAAA'"); 
+// $sqlClass->setWhere("Name='Vlad11'"); 
+// $sqlClass->setLimit("10"); 
 
 // $sqlClass->selectDB();
 
 
-echo var_dump($sqlClass->selectDB()) . "<br><br><br>";
-// echo var_dump($sqlClass->insertDB()) . "<br><br><br>";
+// echo var_dump($sqlClass->selectDB()) . "<br><br><br>"; // mysql_fetch_assoc только для него
+// echo var_dump($sqlClass->insertDB()) . "<br><br><br>"; // написать проверку возвращения $tableRow = mysql_fetch_assoc($result);
 // echo var_dump($sqlClass->deleteDB()) . "<br><br><br>";
 // echo var_dump($sqlClass->updateDB()) . "<br><br><br>";
 
-$sqlClass->sendQuery();
-var_dump($sqlClass->connect());
+// $sqlClass->sendQuery();
+// var_dump($sqlClass->connect());
 
 // var_dump($sqlClass);
-
-?>
-
-
-  <!-- //соединение с базой данных при помощи функции mysql_connect()
-  //в аргументах функции укажите имя сервера, логин и пароль. 
-  ! $db = mysql_connect("сервер","логин","пароль");
-  //функция mysql_select_db() выбирает текущую 
-  //базу данных с именем "komtet_test"
-  ! mysql_select_db("komtet_test" ,$db);
-  //функция mysql_query() выполняет запрос на выборку данных 
-  //результирующий набор данных хранится в переменной $sql
-  ! $sql = mysql_query("SELECT * FROM links" ,$db);
-  //после получения данных начнём формирование HTML-таблицы 
-  ! echo ("<table border ='1'>");
-  //выводим строку заголовков 
-  ! echo ("<tr><td>Адрес</td><td>Описание</td></tr>");
-  //функция mysql_fetch_row() извлекает одну строку из результата 
-  //и сохраняет её в массиве $tablerows
-  ! while ($tablerows = mysql_fetch_row($sql))
-  {
-  //теперь в цикле для каждой полученной строки сделаем вывод 
-  //$tablerows[1] соответствует полю "url" 
-  //$tablerows[2] соответствует полю "description" 
-  echo("<tr><td><a href="/info/tech/$tablerows[1]">$tablerows[1]
-        </a></td><td>$tablerows[2]</td></tr> ");
-  }
-  ! echo "</table>";
-  //закрытие соединение (рекомендуется)
-  ! mysql_close($db); -->

@@ -12,28 +12,20 @@ Class Mysql extends Sql {
   public function connect() 
   {
     $this->dbConnect = mysql_connect(MYSQL_SERVER,MYSQL_USER,MYSQL_PASS);
-    // echo "<pre><b style='background: red;padding: 1px 5px; color: #fff'>M</b> '. var_export($this->dbConnect) . '</pre>'";
     if ($this->dbConnect)
     {
       mysql_select_db(MYSQL_DB, $this->dbConnect);
-      $result = mysql_query($this->sendQuery());
-      $tableRow = mysql_fetch_row($result);
-      var_dump($tableRow);
-      return true;
+      $queryResult = mysql_query($this->getQuery(), $this->dbConnect);
+      if (strstr($this->getQuery(), 'SELECT')) {
+        return mysql_fetch_assoc($queryResult);;
+      }
+      if ($queryResult) {
+        return true;
+      }
+      return false;
     }
     return false;
   }
-
-  public function sendQuery() 
-  {
-    return $this->getQuery();
-  }
-
-  // public function selectDB() {
-  //   parent::selectDB();
-    
-  //   // var_dump(gettype($this->getQuery()));
-  // }
   
 }
 

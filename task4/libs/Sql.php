@@ -168,7 +168,7 @@ Class Sql {
   {
     if ($this->fieldSql && $this->tableSql && $this->whereSql) 
     {
-      return $this->query = "SELECT ".$this->valueEach($this->fieldSql)." FROM $this->tableSql WHERE '$this->whereSql' Limit $this->limitSql;";;
+      return $this->query = "SELECT ".$this->valueEach($this->fieldSql, false)." FROM $this->tableSql WHERE $this->whereSql Limit $this->limitSql;";;
     }
     return false;
   }
@@ -177,7 +177,7 @@ Class Sql {
   {
     if ($this->tableSql && $this->insertSql && $this->valuesSql)
     {
-      return $this->query = "INSERT INTO $this->tableSql (".$this->valueEach($this->insertSql).") VALUES (".$this->valueEach($this->valuesSql).");";
+      return $this->query = "INSERT INTO $this->tableSql (".$this->valueEach($this->insertSql, false).") VALUES (".$this->valueEach($this->valuesSql, true).");";
     }
     return false;
   }
@@ -209,9 +209,13 @@ Class Sql {
     return $var;
   }
 
-  private function valueEach($arr) 
+  private function valueEach($arr, $quote) 
   {
-    $value = "'".trim(implode(",", $arr), ','). "'";
+    if ($quote) {
+      $value = "'".trim(implode("','", $arr), ',')."'";
+    } else {
+      $value = trim(implode(",", $arr), ',');
+    }
     return $value;
   }
 
