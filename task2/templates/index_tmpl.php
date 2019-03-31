@@ -1,12 +1,6 @@
 <?php
 
 
-$calcObj = new Calc();
-
-$calcObj->setNumA("10");
-$calcObj->setNumB(5);
-
-
 echo 'sum: ' . $calcObj->sum() . "<br>";
 
 echo 'subtraction: ' . $calcObj->subtraction() . "<br>";

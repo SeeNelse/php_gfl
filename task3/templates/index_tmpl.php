@@ -1,11 +1,3 @@
-<?php
-
-$objWrite = new File();
-$objRead = new File();
-
-
-?>
-
 <!DOCTYPE html>
 <html lang="en">
 <head>

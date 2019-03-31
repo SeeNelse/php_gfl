@@ -12,10 +12,9 @@ Class Mysql extends Sql {
   public function connect() 
   {
     if ($this->dbConnect)
-    {
+    { // добавить try catch
       mysql_select_db(MYSQL_DB, $this->dbConnect);
       $sqlResult = mysql_query($this->getQuery(), $this->dbConnect);
-
       if (strstr($this->getQuery(), 'SELECT')) {
         $i=0;
         $returnArr = [];

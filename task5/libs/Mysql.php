@@ -13,7 +13,7 @@ class Mysql implements iWorkData
       $this->dbConnect = new PDO('mysql:host='.MYSQL_SERVER.';dbname='.MYSQL_DB, MYSQL_USER, MYSQL_PASS);
     } catch (PDOException $e) {
       echo $this->error = $e->getMessage();
-      die();
+      return false;
     }
    
     $this->addData = [];
@@ -27,8 +27,8 @@ class Mysql implements iWorkData
       is_string($val) ? $val = trim($val) : false;
       if (!$this->getData($key)) {
         try {
-          $stmt = $this->dbConnect->prepare("INSERT INTO ".MYSQL_TABLE." (SqlVariable,	SqlValue) VALUES ('$key', '$val')");
-          $stmt->execute();
+          $querySend = $this->dbConnect->prepare("INSERT INTO ".MYSQL_TABLE." (SqlVariable,	SqlValue) VALUES ('$key', '$val')");
+          $querySend->execute();
           return true;
         } catch (PDOException $e) {
           echo $this->error = $e->getMessage();

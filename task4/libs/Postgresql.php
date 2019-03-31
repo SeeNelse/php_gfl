@@ -17,6 +17,8 @@ Class Postgresql extends Sql {
       $result = pg_query($this->getQuery());
       $line = pg_fetch_array($result, null, PGSQL_ASSOC);
       echo '<pre>'; echo var_export($line); echo'</pre>';
+
+      
       // while ($line = pg_fetch_array($result, null, PGSQL_ASSOC)) {
       //   echo "\t<tr>\n";
       //   foreach ($line as $col_value) {
