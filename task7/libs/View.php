@@ -25,5 +25,6 @@ class View
 			$this->file = str_replace($key, $val, $this->file);
 		}													
 		echo $this->file;
-    }
+	}
+
 }

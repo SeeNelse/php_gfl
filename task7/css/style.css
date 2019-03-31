@@ -12,10 +12,19 @@
 
 .form label {
   display: flex;
-  flex-direction: column;
+  flex-direction: row;
   margin: 10px 0;
 }
 
-.form select, .form input, .form textarea {
-  margin-top: 10px;
+.form label span {
+  color: red;
+  margin-left: 3px;
 }
+
+.btn {
+  margin-top: 15px !important;
+}
+
+/* .form select, .form input, .form textarea {
+  margin-top: 10px;
+} */

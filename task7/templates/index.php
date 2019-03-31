@@ -10,33 +10,30 @@
   </head>
   <body>
 	<div class="container">
-		<h1 class="header center">Contact Form</h1>
+		<h1 class="header center">%TITLE%</h1>
 		<div class="row justify-content-center">
 			<form action="" method="POST" class="form">
-				<label>
-					First, Last name
-					<input type="text" name="first-last" class="form-control" required>
-				</label>
-				<label>
-					Email
-					<input type="email" name="email" class="form-control" required>
-				</label>
-				<label>
-					Choose subject
-					<select name="select" class="form-control" required>
-						<option value="%SELECT_NONE%" disabled selected>%SELECT_NONE%</option>
-						<option value="%SELECT_1%">%SELECT_1%</option>
-						<option value="%SELECT_2%">%SELECT_2%</option>
-						<option value="%SELECT_3%">%SELECT_3%</option>
-					</select>
-				</label>
-				<label>
-					Message
-					<textarea name="textarea" cols="30" rows="10" class="form-control" required></textarea>
-				</label>
+				<label>First, Last name<span>*</span></label>
+				<div class="error">%ERROR%</div>
+				<input type="text" name="first-last" class="form-control" value="%FORM_NAME%" required>
+				<label>Email<span>*</span></label>
+				<div class="error"></div>
+				<input type="email" name="email" class="form-control" value="%FORM_EMAIL%" required>
+				<label>Choose subject<span>*</span></label>
+				<div class="error"></div>
+				<select name="select" class="form-control" required>
+					<option value="%SELECT_NONE%" disabled selected>%SELECT_NONE%</option>
+					<option value="%SELECT_1%">%SELECT_1%</option>
+					<option value="%SELECT_2%">%SELECT_2%</option>
+					<option value="%SELECT_3%">%SELECT_3%</option>
+				</select>
+				<label>Message<span>*</span></label>
+				<div class="error"></div>
+				<textarea name="textarea" cols="30" rows="10" class="form-control" >%FORM_TEXTAREA%</textarea>
 				<input type="submit" name="form-button" class="btn btn-dark">
     	</form>
 		</div>
 	</div>
   </body>
 </html>
+

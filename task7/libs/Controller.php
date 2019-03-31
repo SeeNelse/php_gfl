@@ -18,8 +18,7 @@ class Controller
 		{
 			$this->pageDefault();
 		}
-		
-		$this->view->templateRender();	
+		$this->view->templateRender();
 	}
 	
 	private function pageSendMail()
