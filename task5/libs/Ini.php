@@ -11,10 +11,16 @@ class Ini implements iWorkData
 
   public function saveData($key, $val)
   {
-    if (is_string($key) && is_numeric($val) || is_string($key) && is_string($val)) {
+    if (is_string($key) && is_numeric($val) || is_string($key) && is_string($val)) 
+    {
+      $key = trim($key);
+      is_string($val) ? $val = trim($val) : false;
+      
       $tempArray = parse_ini_file(INI_FILE_PATH);
-      forEach($tempArray as $var => $val) {
-        if ($var == $key) {
+      forEach($tempArray as $var => $val) 
+      {
+        if ($var == $key) 
+        {
           return false;
         }
       }
@@ -27,9 +33,12 @@ class Ini implements iWorkData
 
   public function getData($key)
   {
-    if (is_string($key) && parse_ini_file(INI_FILE_PATH)) {
+    if (is_string($key) && parse_ini_file(INI_FILE_PATH)) 
+    {
+      $key = trim($key);
       $tempArray = parse_ini_file(INI_FILE_PATH);
-      if ($tempArray[$key]) {
+      if ($tempArray[$key]) 
+      {
         return $tempArray[$key];
       }
       return false;
@@ -39,13 +48,17 @@ class Ini implements iWorkData
 
   public function deleteData($key)
   {
-    if (is_string($key) && parse_ini_file(INI_FILE_PATH)) {
+    if (is_string($key) && parse_ini_file(INI_FILE_PATH)) 
+    {
+      $key = trim($key);
       $tempArray = parse_ini_file(INI_FILE_PATH);
       ar($tempArray);
-      forEach($tempArray as $var => $val) {
+      forEach($tempArray as $var => $val) 
+      {
         if ($var == $key) {
           unset($tempArray[$var]);
-          forEach($tempArray as $var2 => $val2) {
+          forEach($tempArray as $var2 => $val2) 
+          {
             $tempIniData .= "$var2 = $val2\n";
           }
           file_put_contents(INI_FILE_PATH, $tempIniData);
