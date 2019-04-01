@@ -74,7 +74,7 @@
 	"fphpVarDump": {
 		"prefix": "ar",
 		"body": [
-			"echo '<pre><b style='background: red;padding: 1px 5px; color: #fff'>M</b> '. var_export(${var}) . '</pre>';",
+			"echo '<pre>'. var_export(${var}) . '</pre>';",
 		],
 		"description": "fphpFunction"
 	},

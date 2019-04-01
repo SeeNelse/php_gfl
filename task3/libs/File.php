@@ -7,7 +7,8 @@ class File
 
   public function __construct()
   {
-    $this->fileData = file(FILE_PATH, FILE_IGNORE_NEW_LINES);
+    $this->fileDataWrite = file(FILE_PATH_WRITE, FILE_IGNORE_NEW_LINES);
+    $this->fileDataRead = file(FILE_PATH_READ, FILE_IGNORE_NEW_LINES);
   }
 
   //setters
@@ -15,11 +16,11 @@ class File
   {
     if (is_numeric($row) && $this->permCheck() && $row > 0 && is_string($text)) {
       $row--;
-      $this->fileData[$row] = $text;
-      forEach($this->fileData as $item) {
+      $this->fileDataRead[$row] = $text;
+      forEach($this->fileDataRead as $item) {
         $stringTemp .= $item . "\n";
       }
-      file_put_contents(FILE_PATH, trim($stringTemp));
+      file_put_contents(FILE_PATH_WRITE, trim($stringTemp));
       return true;
     }
     return false;
@@ -30,9 +31,9 @@ class File
     if (is_numeric($row) && is_numeric($symb) && $this->permCheck()  && $row > 0 && $symb > 0 && is_string($letter) && mb_strlen($letter) == 1) {
       $row--;
       $symb--;
-      for ($r = 0; $r < count($this->fileData); $r++ ) 
+      for ($r = 0; $r < count($this->fileDataRead); $r++ ) 
       {
-        for ($s = 0; $s < mb_strlen($this->fileData[$r]); $s++ ) 
+        for ($s = 0; $s < mb_strlen($this->fileDataRead[$r]); $s++ ) 
         {
           if ($row == $r && $symb == $s) {
             $result .= $letter;
@@ -42,7 +43,7 @@ class File
         }
         $result .= "\r\n";
       }
-      file_put_contents(FILE_PATH, trim($result));
+      file_put_contents(FILE_PATH_WRITE, trim($result));
       return true;
     }
     return false;
@@ -54,12 +55,13 @@ class File
     if (is_numeric($row) && $this->permCheck() && $row > 0)
     {
       $row--;
-      if ($this->fileData[$row]) {
-        return $this->fileData[$row];
+      if ($this->fileDataRead[$row]) {
+        return $this->fileDataRead[$row];
       } else {
         return false;
       }
     }
+    return false;
   }
 
   public function getSymbol($row, $symb) 
@@ -68,17 +70,13 @@ class File
     {
       $row--;
       $symb--;
-      if ($this->fileData[$row][$symb]) {
-        return $this->fileData[$row][$symb];
+      if ($this->fileDataRead[$row][$symb]) {
+        return $this->fileDataRead[$row][$symb];
       } else {
         return false;
       }
     }
-  }
-
-  public function getFileDataArr() 
-  {
-    return $this->fileData;
+    return false;
   }
 
   //methods
@@ -86,14 +84,15 @@ class File
   {
     if ($via == 'row')
     {
-      for ($r = 0; $r <= count($this->fileData); $r++ ) {
+      for ($r = 0; $r <= count($this->fileDataRead); $r++ ) {
         $result .= $this->getRow($r) . "\r\n";
       }
       return nl2br(trim($result));
     } else if ($via == 'symb') {
-      for ($r = 0; $r < count($this->fileData); $r++ ) 
+      for ($r = 0; $r < count($this->fileDataRead); $r++ ) 
       {
-        for ($s = 0; $s < mb_strlen($this->fileData[$r]); $s++ ) 
+        
+        for ($s = 0; $s < mb_strlen($this->fileDataRead[$r]); $s++ ) 
         {
           $result .= $this->getSymbol($r+1,$s+1);
         }
@@ -104,12 +103,13 @@ class File
     return false;
   }
 
-  private function permCheck() 
-  { // permission check
-    if (file_exists(FILE_PATH))
+  public function permCheck() 
+  {
+    if (file_exists(FILE_PATH_WRITE) && file_exists(FILE_PATH_READ))
     {
-      $dirPerm = substr(decoct(fileperms(FILE_PATH)), -3);
-      if (intval($dirPerm[2]) < 5) {
+      $dirPermWtire = substr(decoct(fileperms(FILE_PATH_WRITE)), -3);
+      $dirPermRead = substr(decoct(fileperms(FILE_PATH_READ)), -3);
+      if (intval($dirPermWtire[2]) < 5 && intval($dirPermRead[2]) < 5) {
         return false;
       } else {
         return true;

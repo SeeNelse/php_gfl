@@ -10,9 +10,13 @@
       width: 1000px;
       margin: 0 auto;
     }
+    .error {
+      color: red;
+    }
   </style>
 </head>
 <body>
+  <?php if($objWrite->permCheck()) { ?>
   <div class="container">
     <div>
       <div>
@@ -34,15 +38,15 @@
       <div>
         <h2>Метод setRow() - Замена строки</h2>
         <p>
-          <?php var_dump($objWrite->setRow(1, 'Aliquam porttitor maximus magna, et pretium eros consequat nec.')); ?>
+          <?= $objWrite->setRow(1, 'Aliquam porttitor maximus magna, et pretium eros consequat nec.'); ?>
         </p>
       </div>
     </div>
     <div>
       <div>
-        <h2>Метод setRow() - Замена буквы</h2>
+        <h2>Метод setSymbol() - Замена буквы</h2>
         <p>
-          <?php var_dump($objWrite->setSymbol(1, 2, 'B')); ?>
+          <?= $objWrite->setSymbol(1, 2, 'B'); ?>
         </p>
       </div>
     </div>
@@ -66,7 +70,7 @@
       <div>
         <h2>Метод filePrint('row') - рендер файла построчно</h2>
         <p>
-          <?= $objRead->filePrint('row'); ?>
+          <?= $objWrite->filePrint('row'); ?>
         </p>
       </div>
     </div>
@@ -74,10 +78,13 @@
       <div>
         <h2>Метод filePrint('symb') - рендер файла побуквенно</h2>
         <p>
-          <?= $objRead->filePrint('symb'); ?>
+          <?= $objWrite->filePrint('symb'); ?>
         </p>
       </div>
     </div>
   </div>
+  <?php } else { ?>
+  <div class="container"><h2 class="error">Error - Permission denied</h2></div>
+  <?php } ?>
 </body>
 </html>

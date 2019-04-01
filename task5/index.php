@@ -24,36 +24,43 @@ function deleteFunc(iWorkData $object, $key)
   return $object->deleteData($key);
 }
 
+$typeArr = ['json', 'ini', 'cookies', 'session', 'mysql'];
+$getArr = [];
 
-$jsonObj = new Json();
+forEach($typeArr as $item) {
+  ${$item.'Obj'} = new $item();
+  // addFunc($item.'Obj', 'key1', 'VAR1');
+  echo '<pre>'. var_export(getFunc($item.'Obj', 'key1')) . '</pre>';
+}
+
+
+// // $jsonObj = new Json();
 // addFunc($jsonObj, 'key1', 'VAR1');
 // getFunc($jsonObj, 'key1');
 // deleteFunc($jsonObj, 'key2');
 
 
-$iniObj = new Ini();
+// // $iniObj = new Ini();
 // addFunc($iniObj, 'key1', 123);
 // getFunc($iniObj, 'key1');
 // deleteFunc($iniObj, 'key1');
 
 
-$cookObj = new Cookies();
+// // $cookObj = new Cookies();
 // addFunc($cookObj, 'key1', 'val1');
 // getFunc($cookObj, 'key1');
 // deleteFunc($cookObj, 'key1');
-// echo '<br><br><pre>'; echo var_export($_COOKIE); echo'</pre>';
+// // echo '<br><br><pre>'; echo var_export($_COOKIE); echo'</pre>';
 
 
-$sessionObj = new Session();
+// // $sessionObj = new Session();
 // addFunc($sessionObj, 'key1', 'val1');
 // getFunc($sessionObj, 'key1');
 // deleteFunc($sessionObj, 'key1');
-// echo '<pre>'; echo var_export($_SESSION); echo'</pre>';
+// // echo '<pre>'; echo var_export($_SESSION); echo'</pre>';
 
 
-
-
-$mysqlObj = new Mysql();
+// // $mysqlObj = new Mysql();
 // addFunc($mysqlObj, 'key1', 'val1');
 // getFunc($mysqlObj, 'key1');
 // deleteFunc($mysqlObj, 'key3');
