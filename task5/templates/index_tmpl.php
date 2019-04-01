@@ -12,24 +12,24 @@
 </head>
 <body>
   <div>
-    <h3>Json</h3>
-    <p></p>
+    <h3>Json result:</h3>
+    <p><?= $jsonObjGet; ?><br><?= $jsonObjDel; ?></p>
   </div>
   <div>
-    <h3>Ini</h3>
-    <p></p>
+    <h3>Ini result:</h3>
+    <p><?= $iniObjGet; ?><br><?= $iniObjDel; ?></p>
   </div>
   <div>
-    <h3>Cookies</h3>
-    <p></p>
+    <h3>Cookies result:</h3>
+    <p><?= $cookiesObjGet; ?><br><?= $cookiesObjDel; ?></p>
   </div>
   <div>
-    <h3>Session</h3>
-    <p></p>
+    <h3>Session result:</h3>
+    <p><?= $sessionObjGet; ?><br><?= $sessionObjDel; ?></p>
   </div>
   <div>
-    <h3>Mysql</h3>
-    <p></p>
+    <h3>Mysql result:</h3>
+    <p><?= $mysqlObjGet; ?><br><?= $mysqlObjDel; ?></p>
   </div>
 </body>
 </html>

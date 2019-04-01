@@ -52,7 +52,6 @@ class Ini implements iWorkData
     {
       $key = trim($key);
       $tempArray = parse_ini_file(INI_FILE_PATH);
-      ar($tempArray);
       forEach($tempArray as $var => $val) 
       {
         if ($var == $key) {
