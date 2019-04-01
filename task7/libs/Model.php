@@ -9,23 +9,30 @@ class Model
     $this->email = $_POST['email'];
     $this->select = $_POST['select'];
     $this->textarea = $_POST['textarea'];
-    $this->placeholderArr = [];
-  }
 
-  public function getArray()
-  {
-    return array(
+    $this->placeholderArr = [
       '%TITLE%' => 'Contact Form',
       '%ERRORS%' => 'Empty field',
       '%SELECT_NONE%' => 'Please select',
       '%SELECT_1%' => 'Subject 1',
       '%SELECT_2%' => 'Subject 2',
       '%SELECT_3%' => 'Subject 3',
-      '%FORM_NAME%' => $_POST['first-last'],
-      '%FORM_EMAIL%' => $_POST['email'],
-      '%FORM_TEXTAREA%' => $_POST['textarea'],
-      '%ERROR%' => 'ERROR!',
-    );
+      '%SELECT_1_selected%' => '',
+      '%SELECT_2_selected%' => '',
+      '%SELECT_3_selected%' => '',
+      '%FORM_NAME%' => $this->name,
+      '%FORM_EMAIL%' => $this->email,
+      '%FORM_TEXTAREA%' => $this->textarea,
+      '%ERROR_NAME%' => '',
+      '%ERROR_EMAIL%' => '',
+      '%ERROR_SELECT%' => '',
+      '%ERROR_TEXTAREA%' => '',
+    ];
+  }
+
+  public function getArray()
+  {
+    return $this->placeholderArr; // !
   }
 
   public function checkForm()
@@ -40,8 +47,9 @@ class Model
       {
         return false;
       }
-      echo '<pre>'; echo var_export($_POST); echo'</pre>';
-      $_POST = [];
+
+      $this->cleaningValuesInArray(); // !
+      // $_POST = []; !
       return true;
     }
     return false;
@@ -52,20 +60,8 @@ class Model
     // return mail()
   }
 
-  private function cleaning($var) {
-    $var = htmlspecialchars(stripslashes(strip_tags(trim($var))));
-    return $var;
-  }
-
-  private function lengthCheck($var, $min, $max) {
-    if (mb_strlen($var) < $min || mb_strlen($var) > $max) {
-      return false;
-    }
-    return $var;
-  }
-
   private function nameCheck($name) {
-    $name = $this->cleaning($name);
+    $name = $this->cleaningValues($name);
     if (!$this->lengthCheck($name, 4, 30)) {
       return false;
     }
@@ -74,7 +70,7 @@ class Model
   }
 
   private function mailCheck($mail) {
-    $mail = $this->cleaning($mail);
+    $mail = $this->cleaningValues($mail);
     $mail = filter_var($mail, FILTER_VALIDATE_EMAIL);
     if ($mail) {
       $this->getArray()['%FORM_EMAIL%'] = $mail;
@@ -99,7 +95,7 @@ class Model
   }
 
   private function textareaCheck($textarea) {
-    $textarea = $this->cleaning($textarea);
+    $textarea = $this->cleaningValues($textarea);
     if (!$this->lengthCheck($textarea, 1, 1000)) { // поставить 10, 1000
       return false;
     }
@@ -107,33 +103,22 @@ class Model
     return $textarea;
   }
 
-  // private function setCookies($arr) {
-  //   setcookie('dataArray', serialize($arr), time()+10);
-  //   // echo '<pre>'; echo var_export($_COOKIE); echo'</pre>';
-  //   return true;
-  // }
-  
-  // public function getCookies() {
-  //   if ($_COOKIE['dataArray']) {
-  //     $this->CookiesToArr();
-  //     return true;
-  //   } else {
-  //     return false;
-  //   }
-  // }
+  private function cleaningValues($var) {
+    $var = htmlspecialchars(stripslashes(strip_tags(trim($var))));
+    return $var;
+  }
 
-  // private function CookiesToArr() {
-  //   // unserialize($_COOKIE['dataArray']);
-  //   if ($_COOKIE['dataArray']) {
-  //     echo 1;
-  //     return true;
-  //   } else {
-  //     echo 2;
-  //     return false;
-  //   }
-  // }
+  private function lengthCheck($var, $min, $max) {
+    if (mb_strlen($var) < $min || mb_strlen($var) > $max) {
+      return false;
+    }
+    return $var;
+  }
+
+  private function cleaningValuesInArray() {
+    $this->placeholderArr['%FORM_NAME%'] = '';
+    $this->placeholderArr['%FORM_EMAIL%'] = '';
+    $this->placeholderArr['%FORM_TEXTAREA%'] = '';
+  }
 
 }
-
-
-
