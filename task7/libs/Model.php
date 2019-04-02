@@ -9,7 +9,6 @@ class Model
     $this->email = $_POST['email'];
     $this->select = $_POST['select'];
     $this->textarea = $_POST['textarea'];
-
     $this->placeholderArr = [
       '%TITLE%' => 'Contact Form',
       '%ERRORS%' => 'Empty field',
@@ -27,6 +26,7 @@ class Model
       '%ERROR_EMAIL%' => '',
       '%ERROR_SELECT%' => '',
       '%ERROR_TEXTAREA%' => '',
+      '%SUCCESS_EMAIL%' => $_COOKIE["success_email"],
     ];
   }
 
@@ -37,8 +37,6 @@ class Model
 
   public function checkForm()
   {
-    if ($this->name && $this->email && $this->select && $this->textarea)
-    {
       $this->name = $this->nameCheck($this->name);
       $this->email = $this->mailCheck($this->email);
       $this->select = $this->selectCheck($this->select);
@@ -47,25 +45,29 @@ class Model
       {
         return false;
       }
-
-      $this->cleaningValuesInArray(); // !
-      // $_POST = []; !
+      $this->deleteValuesInArray();
       return true;
-    }
-    return false;
   }
 
   public function sendEmail()
   {
-    // return mail()
+    $subject = 'Message from contact form'; //Загаловок сообщения
+    $message = "
+    First, Last name: $this->name \n
+    E-mail: $this->email \n
+    Subject: $this->select \n
+    Message: $this->textarea";
+    $headers  = "Content-type: text/html; charset=utf-8 \r\n";
+    $headers .= "From: <$this->email>\r\n";
+    return mail(TO_Email, $subject, $message, $headers);
   }
 
   private function nameCheck($name) {
     $name = $this->cleaningValues($name);
-    if (!$this->lengthCheck($name, 4, 30)) {
+    if (!$this->lengthCheck($name, 4, 30) || is_numeric($name) || !$name) {
+      $this->placeholderArr['%ERROR_NAME%'] = 'Incorrect value';
       return false;
     }
-    $this->getArray()['%FORM_NAME%'] = $name;
     return $name;
   }
 
@@ -73,20 +75,23 @@ class Model
     $mail = $this->cleaningValues($mail);
     $mail = filter_var($mail, FILTER_VALIDATE_EMAIL);
     if ($mail) {
-      $this->getArray()['%FORM_EMAIL%'] = $mail;
       return $mail;
     } else {
+      $this->placeholderArr['%ERROR_EMAIL%'] = 'Incorrect value';
       return false;
     }
   }
 
   private function selectCheck($select) {
-    if ($select == 'Please select') {
+    
+    if ($select == 'Please select' || !$select) {
+      $this->placeholderArr['%ERROR_SELECT%'] = 'Incorrect value';
       return false;
     }
     forEach($this->getArray() as $key => $item) {
       if (stristr($key, 'select')) {
         if ($select == $item) {
+          $this->placeholderArr[substr($key, 0, -1).'_selected%'] = 'selected';
           return $select;
         }
       }
@@ -97,9 +102,9 @@ class Model
   private function textareaCheck($textarea) {
     $textarea = $this->cleaningValues($textarea);
     if (!$this->lengthCheck($textarea, 1, 1000)) { // поставить 10, 1000
+      $this->placeholderArr['%ERROR_TEXTAREA%'] = 'Incorrect value';
       return false;
     }
-    $this->getArray()['%FORM_TEXTAREA%'] = $textarea;
     return $textarea;
   }
 
@@ -115,10 +120,15 @@ class Model
     return $var;
   }
 
-  private function cleaningValuesInArray() {
+  private function deleteValuesInArray() {
     $this->placeholderArr['%FORM_NAME%'] = '';
     $this->placeholderArr['%FORM_EMAIL%'] = '';
     $this->placeholderArr['%FORM_TEXTAREA%'] = '';
+    $this->placeholderArr['%SELECT_1_selected%'] = '';
+    $this->placeholderArr['%SELECT_2_selected%'] = '';
+    $this->placeholderArr['%SELECT_3_selected%'] = '';
+    setcookie('success_email', 'Message sent successfully!', time()+1);
+    $_POST = [];
   }
 
 }

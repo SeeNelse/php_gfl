@@ -25,6 +25,14 @@
   margin-top: 15px !important;
 }
 
+.error {
+  color: red;
+}
+
+.success {
+  color: green;
+}
+
 /* .form select, .form input, .form textarea {
   margin-top: 10px;
 } */

@@ -13,10 +13,11 @@
 		<h1 class="header center">%TITLE%</h1>
 		<div class="row justify-content-center">
 			<form action="" method="POST" class="form">
+				<div class="success">%SUCCESS_EMAIL%</div>
 				<label>First, Last name<span>*</span></label>
 				<div class="error">%ERROR_NAME%</div>
 				<input type="text" name="first-last" class="form-control" value="%FORM_NAME%" required>
-				<label>Email<span>*</span></label>
+				<label>E-mail<span>*</span></label>
 				<div class="error">%ERROR_EMAIL%</div>
 				<input type="email" name="email" class="form-control" value="%FORM_EMAIL%" required>
 				<label>Choose subject<span>*</span></label>
