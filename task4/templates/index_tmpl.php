@@ -1,15 +1,15 @@
 <?php 
 
-$sqlClass = new Mysql();
-$sqlClass->setTable('task4');
+// $sqlClass = new Mysql();
+// $sqlClass->setTable('task4');
+
 
 //select
-$sqlClass->setTable('task4');
-$sqlClass->setField('Name');
-$sqlClass->setWhere("Name='Vladislav'"); 
-$sqlClass->setLimit("10"); 
-echo '<pre>'; echo var_export($sqlClass->selectDB()); echo'</pre>';
-echo '<pre>'; echo var_export($sqlClass->connect()); echo'</pre>';
+// $sqlClass->setField('Name');
+// $sqlClass->setWhere("Name='Vladislav'"); 
+// $sqlClass->setLimit("10"); 
+// echo '<pre>'; echo var_export($sqlClass->selectDB()); echo'</pre>';
+// echo '<pre>'; echo var_export($sqlClass->connect()); echo'</pre>';
 
 
 // insert
@@ -37,22 +37,37 @@ echo '<pre>'; echo var_export($sqlClass->connect()); echo'</pre>';
 
 
 // postgresql
-// $psqlClass = new Postgresql();
-// $psqlClass->setTable('task4');
+$psqlClass = new Postgresql();
+$psqlClass->setTable('task4');
+
+//select
+$psqlClass->setField('descr');
+$psqlClass->setWhere("name='Vladislav1'"); 
+$psqlClass->setLimit("10"); 
+$psqlClass->selectDB();
+$psqlClass->connect();
 
 
 // insert
-// $psqlClass->setInsert('Name');
-// $psqlClass->setInsert('Descr');
-// $psqlClass->setValues('Vladislav');
-// $psqlClass->setValues('Описание');
+// $psqlClass->setInsert('name');
+// $psqlClass->setInsert('descr');
+// $psqlClass->setValues('Vladislav1');
+// $psqlClass->setValues('123fff');
 // $psqlClass->insertDB();
 // $psqlClass->connect();
 
 
+//delete
+// $psqlClass->setWhere("Name='Vladislav'"); 
+// $psqlClass->deleteDB();
+// $psqlClass->connect();
 
 
-
+//update
+// $psqlClass->setUpdSet("Descr='Привет'");
+// $psqlClass->setWhere("Name='Vladislav1'");
+// $psqlClass->updateDB();
+// $psqlClass->connect();
 
 
 // SELECT 'Descr' FROM task4 WHERE Name='Vladislav' Limit 10;

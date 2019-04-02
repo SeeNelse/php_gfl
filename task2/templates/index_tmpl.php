@@ -1,29 +1,27 @@
-<?php
-
-
-echo 'sum: ' . $calcObj->sum() . "<br>";
-
-echo 'subtraction: ' . $calcObj->subtraction() . "<br>";
-
-echo 'multiplication: ' . $calcObj->multiplication() . "<br>";
-
-echo 'division: ' . $calcObj->division() . "<br>";
-
-echo 'sqrtFnc: ' . $calcObj->sqrtFnc(). "<br>";
-
-echo 'percent: ' . $calcObj->percent() . "<br>";
-
-echo 'squared: ' . $calcObj->squared(). "<br>";
-
-echo 'fraction: ' . $calcObj->fraction(). "<br>";
-
-echo 'ms: ' . $calcObj->ms(). "<br>";
-
-echo 'mPlus: ' . $calcObj->mPlus(). "<br>";
-
-echo 'mMinus: ' . $calcObj->mMinus(). "<br>";
-
-echo 'mc: ' . $calcObj->mc(). "<br>";
-
-
-?>
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <link rel="stylesheet" href="css/style.css">
+  <title>Task 2</title>
+</head>
+<body>
+  <div class="container">
+    <h1>Task 2</h1>
+    <div class="item"><span>Sum: <?= $sum ?></span></div>
+    <div class="item"><span>Subtraction: <?= $subtraction ?></span></div>
+    <div class="item"><span>Multiplication: <?= $multiplication ?></span></div>
+    <div class="item"><span>Division: <?= $division ?></span></div>
+    <div class="item"><span>SqrtFnc: <?= $sqrtFnc ?></span></div>
+    <div class="item"><span>Percent: <?= $percent ?></span></div>
+    <div class="item"><span>Squared: <?= $squared ?></span></div>
+    <div class="item"><span>Fraction: <?= $fraction ?></span></div>
+    <div class="item"><span>Ms: <?= $ms ?></span></div>
+    <div class="item"><span>M+: <?= $mPlus ?></span></div>
+    <div class="item"><span>M-: <?= $mMinus ?></span></div>
+    <div class="item"><span>MC: <?= $mc ?></span></div>
+  </div>
+</body>
+</html>

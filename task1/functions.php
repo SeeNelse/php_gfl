@@ -2,11 +2,11 @@
 
 function addFile($dirPath) {
 	global $errorMsg;
-	global $successMsg;
 
 	if (!permCheck()) {
 		global $permMsg;
-		return $permMsg = 'Permission denied';
+		$permMsg = 'Permission denied';
+		return false;
 	}
 	$fileName = $_FILES['fileUpload']['name'];
 	$fileTempName = $_FILES['fileUpload']['tmp_name'];
@@ -14,31 +14,39 @@ function addFile($dirPath) {
 	$fileError = $_FILES['fileUpload']['error'];
 
 	switch ($fileError) {
-    case 1:
-			return $errorMsg = "File size is too high";
+		case 1:
+			$errorMsg = "File size is too high";
+			return false;
     case 2:
-			return $errorMsg = "File size is too high";
+			$errorMsg = "File size is too high";
+			return false;
     case 3:
-			return $errorMsg = "The download file was only partially received";
+			$errorMsg = "The download file was only partially received";
+			return false;
     case 4:
-			return $errorMsg = "The file has not been uploaded";
+			$errorMsg = "The file has not been uploaded";
+			return false;
     case 6:
-			return $errorMsg = "There is no temporary folder";
+			$errorMsg = "There is no temporary folder";
+			return false;
     case 7:
-			return $errorMsg = "Could not write file to disk";
+			$errorMsg = "Could not write file to disk";
+			return false;
     case 8:
-			return $errorMsg = "PHP extension stopped file loading";
+			$errorMsg = "PHP extension stopped file loading";
+			return false;
 	}
 
 	if (file_exists($uploadFile)) {
-		return $errorMsg = "File $fileName is exist";
+		$errorMsg = "File $fileName is exist";
+		return false;
 	}
 
 	if (is_uploaded_file($fileTempName)) {
 		if (move_uploaded_file($fileTempName, $uploadFile)) {
 			chmod($uploadFile, 0777);
 		}
-		return $successMsg = 'File upload!';
+		return true;
 	}
 }
 
@@ -65,19 +73,21 @@ function getFilesInfo($dirPath) {
 function deleteFile($fileName, $dirPath) {
 	if (!permCheck()) {
 		global $permMsg;
-		return $permMsg = 'Permission denied';
+		$permMsg = 'Permission denied';
+		return false;
 	}
-	global $deleteMsg;
 	global $errorMsg;
 	$fileFullPath = $dirPath . $fileName;
 	if (file_exists($fileFullPath)) {
 		if (unlink($fileFullPath)) {
-			return $deleteMsg = "File $fileName was deleted";
+			return true;
 		} else {
-			return $errorMsg = 'Something went wrong';
+			$errorMsg = 'Something went wrong';
+			return false;
 		}
 	} else {
-		return $errorMsg = "File $fileName is no exist";
+		$errorMsg = "File $fileName is no exist";
+		return false;
 	}
 }
 

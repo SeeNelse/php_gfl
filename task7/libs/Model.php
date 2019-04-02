@@ -51,11 +51,10 @@ class Model
 
   public function sendEmail()
   {
-    $subject = 'Message from contact form'; //Загаловок сообщения
+    $subject = $this->select; //Загаловок сообщения
     $message = "
-    First, Last name: $this->name \n
-    E-mail: $this->email \n
-    Subject: $this->select \n
+    First, Last name: $this->name <br>
+    E-mail: $this->email <br>
     Message: $this->textarea";
     $headers  = "Content-type: text/html; charset=utf-8 \r\n";
     $headers .= "From: <$this->email>\r\n";

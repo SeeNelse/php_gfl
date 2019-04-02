@@ -161,7 +161,8 @@ class Calc
 
   function mc () {
     if ($this->ms) {
-      return $this->ms = null;
+      $this->ms = null;
+      return 'Memory clear';
     } else {
       return false;
     }

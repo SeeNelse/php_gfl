@@ -8,11 +8,17 @@
 	$deleteMsg = '';
 	
 	if (isset($_POST['buttonUpload'])) {
-		addFile(DIR_PATH);
+		if (addFile(DIR_PATH))
+		{
+			$successMsg = 'File upload!';
+		}
 	}
 
 	if (isset($_POST['fileDelete'])) {
-		deleteFile($_POST['fileName'], DIR_PATH);
+		if (deleteFile($_POST['fileName'], DIR_PATH))
+		{
+			$deleteMsg = "File $fileName was deleted";
+		}
 	}
 	
 	$filesArray = getFilesInfo(DIR_PATH);
