@@ -46,25 +46,19 @@ $descrArr = [
 ];
 $inputsArr = ['Input 1','Input 2', 'Input 3'];
 
-$helper = new Helper();
-$selectMulti = $helper->select($selectArr);
-$select = $helper->select($selectArr, false);
-$table = $helper->table($tableArr);
-$list = $helper->lists($listArr);
-$descr = $helper->descr($descrArr);
-$inputsRadio = $helper->inputs($inputsArr);
-$inputsCheck = $helper->inputs($inputsArr, "checkbox");
+$htmlHelper = new Helper();
+$selectMulti = $htmlHelper->select($selectArr);
+$select = $htmlHelper->select($selectArr, false);
+$table = $htmlHelper->table($tableArr);
+$list = $htmlHelper->lists($listArr);
+$descr = $htmlHelper->descr($descrArr);
+$inputsRadio = $htmlHelper->inputs($inputsArr);
+$inputsCheck = $htmlHelper->inputs($inputsArr, "checkbox");
 
 echo $selectMulti;
-echo '<br>';
 echo $select;
-echo '<br>';
 echo $table;
-echo '<br>';
 echo $list;
-echo '<br>';
 echo $descr;
-echo '<br>';
 echo $inputsRadio;
-echo '<br>';
 echo $inputsCheck;
