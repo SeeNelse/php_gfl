@@ -20,14 +20,10 @@ Class Postgresql extends Sql {
             $selectResult = trim($value);
           }
         }
-        if ($selectResult) {
-          return true;
-        } else {
-          return false;
-        }
+        return $selectResult;
       }
 
-      return true;
+      return $result;
     }
     return false;
   }
