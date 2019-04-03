@@ -3,7 +3,8 @@
 class File 
 {
 
-  private $fileData;
+  private $fileDataWrite;
+  private $fileDataRead;
 
   public function __construct()
   {
@@ -15,8 +16,13 @@ class File
   public function setRow($row, $text) 
   {
     if (is_numeric($row) && $this->permCheck() && $row > 0 && is_string($text)) {
+      if (count($this->fileDataRead) < $row)
+      {
+        return false;
+      }
       $row--;
       $this->fileDataRead[$row] = $text;
+      echo '<pre>'; echo var_export($this->fileDataRead[$row]); echo'</pre>';
       forEach($this->fileDataRead as $item) {
         $stringTemp .= $item . "\n";
       }
@@ -28,9 +34,12 @@ class File
 
   public function setSymbol($row, $symb, $letter) 
   {
-    if (is_numeric($row) && is_numeric($symb) && $this->permCheck()  && $row > 0 && $symb > 0 && is_string($letter) && mb_strlen($letter) == 1) {
-      $row--;
-      $symb--;
+    if (is_numeric($row) && is_numeric($symb) && $this->permCheck() && $row > 0 && $symb > 0 && is_string($letter) && mb_strlen($letter) == 1) {
+      if (count($this->fileDataRead) < $row)
+      {
+        return false;
+      }
+      $row--; $symb--;
       for ($r = 0; $r < count($this->fileDataRead); $r++ ) 
       {
         for ($s = 0; $s < mb_strlen($this->fileDataRead[$r]); $s++ ) 
@@ -84,15 +93,14 @@ class File
   {
     if ($via == 'row')
     {
-      for ($r = 0; $r <= count($this->fileDataRead); $r++ ) {
-        $result .= $this->getRow($r) . "\r\n";
+      for ($r = 0; $r <= count($this->fileDataWrite); $r++ ) {
+        $result .= $this->getRow($r+1) . "\r\n";
       }
       return nl2br(trim($result));
     } else if ($via == 'symb') {
-      for ($r = 0; $r < count($this->fileDataRead); $r++ ) 
+      for ($r = 0; $r < count($this->fileDataWrite); $r++ ) 
       {
-        
-        for ($s = 0; $s < mb_strlen($this->fileDataRead[$r]); $s++ ) 
+        for ($s = 0; $s < mb_strlen($this->fileDataWrite[$r]); $s++ ) 
         {
           $result .= $this->getSymbol($r+1,$s+1);
         }
