@@ -14,9 +14,9 @@ class Helper
     }
     if ($type)
     {
-      return "<select size='7' class='form-control' $type>$selectItem</select>";
+      return "<select size='7' class='form-control multi' $type>$selectItem</select>";
     } else {
-      return "<select class='form-control'>$selectItem</select>";
+      return "<select class='form-control select'>$selectItem</select>";
     }
   }
 
@@ -31,11 +31,14 @@ class Helper
     }
 
     //thead
-    forEach($data['thead'] as $itemTh) 
+    if ($data['thead'])
     {
-      $thead .= "<th>$itemTh</th>";
+      forEach($data['thead'] as $itemTh) 
+      {
+        $thead .= "<th>$itemTh</th>";
+      }
+      $thead = "<thead><tr>$thead</tr></thead>";
     }
-    $thead = "<thead><tr>$thead</tr></thead>";
 
     //tbody
     forEach($data['tbody'] as $itemTr) {
@@ -48,16 +51,20 @@ class Helper
     $tbody = "<tbody>$tbody</tbody>";
 
     //tfoot
-    forEach($data['tfoot'] as $key => $itemTd) 
+    if ($data['tfoot'])
     {
-      if (gettype($itemTd) == 'array')
+      forEach($data['tfoot'] as $key => $itemTd) 
       {
-        $tfoot .= "<td $key = ".$itemTd[1].">".$itemTd[0]."</td>";
-      } else {
-        $tfoot .= "<td>$itemTd</td>";
+        if (gettype($itemTd) == 'array')
+        {
+          $tfoot .= "<td $key = ".$itemTd[1].">".$itemTd[0]."</td>";
+        } else {
+          $tfoot .= "<td>$itemTd</td>";
+        }
       }
+      $tfoot = "<tfoot><tr>$tfoot</tr></tfoot>";  
     }
-    $tfoot = "<tfoot><tr>$tfoot</tr></tfoot>";
+
     return "<table class='table'>$thead $tbody $tfoot</table>";
   }
 
