@@ -3,7 +3,8 @@
 include 'config.php';
 include 'libs/Helper.php';
 
-$selectArr = ['select1', 'select2', 'select3'];
+
+$selectArr = ['bread', 'milk', 'tomatoes', 'the juice', 'biscuit', 'meat', 'cheese', 'cucumbers', ];
 $tableArr = [
   'thead' => [
     '№',
@@ -41,24 +42,20 @@ $tableArr = [
 ];
 $listArr = ['item1','item2','item3','item4'];
 $descrArr = [
-  'Description 1' => 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Cras velit nunc, luctus eget finibus sed, tincidunt at tortor. Sed ut molestie enim. Quisque pellentesque odio non nisi elementum pharetra',
-  'Description 2' => 'Suspendisse egestas, quam sed auctor scelerisque, massa elit consectetur metus, vitae facilisis tortor orci non justo. Praesent volutpat quam tortor, at interdum massa scelerisque at.',
+  'Description 1' => 'Donec a auctor orci. Phasellus id eros enim. Aenean sit amet lectus eros. Nullam sapien neque, facilisis et scelerisque sit amet, blandit nec urna. Aliquam pharetra urna commodo fermentum sodales. Vestibulum sagittis nisl rutrum enim aliquet rhoncus. Sed dui ante, placerat eget libero at, tincidunt varius nunc. Nulla facilisi. Suspendisse potenti. Etiam sagittis dictum mauris nec aliquet. Phasellus suscipit mi vitae nisi lacinia pretium. Quisque in suscipit ligula.',
+  'Description 2' => 'Morbi ullamcorper ante non velit rutrum consectetur. Cras orci libero, congue et nunc sit amet, placerat hendrerit orci. In hac habitasse platea dictumst. Sed ut porttitor justo. Phasellus vel tincidunt erat. Phasellus varius pretium semper. Nullam et ligula vel felis ultrices rutrum. Aliquam maximus tincidunt volutpat. In sed vehicula mauris. Proin sodales elit quis posuere tincidunt.',
 ];
 $inputsArr = ['Input 1','Input 2', 'Input 3'];
 
 $htmlHelper = new Helper();
 $selectMulti = $htmlHelper->select($selectArr);
-$select = $htmlHelper->select($selectArr, false);
+$selectRegular = $htmlHelper->select($selectArr, false);
 $table = $htmlHelper->table($tableArr);
-$list = $htmlHelper->lists($listArr);
+$listUl = $htmlHelper->lists($listArr);
+$listOl = $htmlHelper->lists($listArr, 'ol');
 $descr = $htmlHelper->descr($descrArr);
 $inputsRadio = $htmlHelper->inputs($inputsArr);
 $inputsCheck = $htmlHelper->inputs($inputsArr, "checkbox");
 
-echo $selectMulti;
-echo $select;
-echo $table;
-echo $list;
-echo $descr;
-echo $inputsRadio;
-echo $inputsCheck;
+
+include 'templates/index_template.php';

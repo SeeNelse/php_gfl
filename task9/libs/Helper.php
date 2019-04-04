@@ -4,6 +4,7 @@ class Helper
 {
   public function select($data, $type = 'multiple') 
   {
+    $selectItem = '';
     if (!gettype($data == 'array')) 
     {
       return false;
@@ -13,14 +14,17 @@ class Helper
     }
     if ($type)
     {
-      return "<select $type>$selectItem</select>";
+      return "<select size='7' class='form-control' $type>$selectItem</select>";
     } else {
-      return "<select>$selectItem</select>";
+      return "<select class='form-control'>$selectItem</select>";
     }
   }
 
   public function table($data) 
   {
+    $thead = '';
+    $tbody = '';
+    $tfoot = '';
     if (!gettype($data == 'array')) 
     {
       return false;
@@ -54,10 +58,11 @@ class Helper
       }
     }
     $tfoot = "<tfoot><tr>$tfoot</tr></tfoot>";
-    return "<table>$thead $tbody $tfoot</table>";
+    return "<table class='table'>$thead $tbody $tfoot</table>";
   }
 
   public function lists($data, $type = 'ul') {
+    $listItem = '';
     if (!$type == 'ul' || !$type == 'ol' || !gettype($data == 'array'))
     {
       return false;
@@ -69,6 +74,7 @@ class Helper
   }
 
   public function descr($data) {
+    $descrItem = '';
     if (!gettype($data == 'array'))
     {
       return false;
@@ -79,13 +85,14 @@ class Helper
     return "<dl>$descrItem</dl>";
   }
 
-  public function inputs($data, $type = 'radio') {
+  public function inputs($data, $type = 'radio', $name = 'test') {
+    $inputsItem = '';
     if (!gettype($data == 'array') || $type != 'radio' && $type != 'checkbox')
     {
       return false;
     }
     forEach($data as $item) {
-      $inputsItem .= "<label><input name='test' type=$type /> $item</label>";
+      $inputsItem .= "<label><input class='form-check-input' name=$name type=$type /> $item</label>";
     }
     return $inputsItem;
   }
