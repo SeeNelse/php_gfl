@@ -2,7 +2,7 @@
 
 class Helper
 {
-  public function select($data, $type = 'multiple') 
+  public function select($data, $type = 'multiple', $size = '6') 
   {
     $selectItem = '';
     if (!gettype($data == 'array')) 
@@ -14,7 +14,7 @@ class Helper
     }
     if ($type)
     {
-      return "<select size='7' class='form-control multi' $type>$selectItem</select>";
+      return "<select size=$size class='form-control multi' $type>$selectItem</select>";
     } else {
       return "<select class='form-control select'>$selectItem</select>";
     }
