@@ -1,0 +1,7 @@
+PHPUnit 5.7.27 by Sebastian Bergmann and contributors.
+
+.................                                                 17 / 17 (100%)
+
+Time: 254 ms, Memory: 14.25MB
+
+OK (17 tests, 17 assertions)
