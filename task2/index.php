@@ -5,7 +5,7 @@ include 'libs/Calc.php';
 
 $calcObj = new Calc();
 $calcObj->setNumA("10");
-$calcObj->setNumB(5);
+// $calcObj->setNumB(0);
 
 
 $sum = $calcObj->sum();

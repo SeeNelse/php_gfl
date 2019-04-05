@@ -41,32 +41,17 @@ class Calc
 
   function sum ()
   {
-    if ($this->numA && $this->numB)
-    {
-      return $this->numA + $this->numB;
-    } else {
-      return false;
-    }
+    return $this->numA + $this->numB;
   }
 
   function subtraction ()
   {
-    if ($this->numA && $this->numB)
-    {
-      return $this->numA - $this->numB;
-    } else {
-      return false;
-    }
+    return $this->numA - $this->numB;
   }
 
   function multiplication ()
   {
-    if ($this->numA && $this->numB)
-    {
-      return $this->numA * $this->numB;
-    } else {
-      return false;
-    }
+    return $this->numA * $this->numB;
   }
 
   function division ()
@@ -75,7 +60,7 @@ class Calc
     {
       return $this->numA / $this->numB;
     } else {
-      return false;
+      return 'error!';
     }
   }
 
@@ -85,7 +70,7 @@ class Calc
     {
       return round(sqrt($this->numA), 2);
     } else {
-      return false;
+      return 'error!';
     }
   }
 
@@ -95,7 +80,7 @@ class Calc
     {
       return ($this->numA / 100) * $this->numB;
     } else {
-      return false;
+      return 'error!';
     }
   }
 
@@ -115,7 +100,7 @@ class Calc
     {
       return round((1 / $this->numA), 2);
     } else {
-      return false;
+      return 'error!';
     }
   }
 

@@ -48,7 +48,7 @@ $descrArr = [
 $inputsArr = ['Input 1','Input 2', 'Input 3'];
 
 $htmlHelper = new Helper();
-$selectMulti = $htmlHelper->select($selectArr);
+$selectMulti = $htmlHelper->select($selectArr, 'multiple', 8);
 $selectRegular = $htmlHelper->select($selectArr, false);
 $table = $htmlHelper->table($tableArr);
 $listUl = $htmlHelper->lists($listArr);

@@ -50,5 +50,6 @@
       </div>
     </div>
   </div>
+  <h5 class="footer__name">Student 8, Dovzhenko Vladislav</h5>
 </body>
 </html>
