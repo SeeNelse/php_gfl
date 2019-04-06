@@ -4,11 +4,13 @@ class Band implements iBand
 {
 
   private $name;
-  private $category;
+  private $genre;
+  private $members;
 
   public function __construct() {
     $this->name = '';
     $this->genre = '';
+    $this->members = [];
   }
 
   public function setName($name) {
@@ -24,6 +26,16 @@ class Band implements iBand
     if (is_string($this->genre))
     {
       $this->genre = $genre;
+      return true;
+    }
+    return false;
+  }
+
+  public function addMusician(iMusician $obj)
+  {
+    if (is_object($obj))
+    {
+      array_push($this->members, (array)$obj);
       return true;
     }
     return false;
@@ -47,14 +59,9 @@ class Band implements iBand
     return false;
   }
 
-  public function addMusician(iMusician $obj)
-  {
-    echo '<pre>'; echo var_export($obj); echo'</pre>';
-  }
-
   public function getMusician()
   {
-
+    return $this->members;
   }
 }
 

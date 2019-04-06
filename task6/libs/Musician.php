@@ -3,9 +3,10 @@
 class Musician implements iMusician
 {
 
-  private $name;
-  private $instrument;
-  private $type;
+  public $name;
+  public $instrument;
+  public $type;
+  public $front;
 
   public function __construct() {
     $this->name = '';
@@ -25,7 +26,6 @@ class Musician implements iMusician
     return false;
   }
 
-
   public function addInstrument(iInstrument $obj)
   {
     if ($obj) 
@@ -38,9 +38,8 @@ class Musician implements iMusician
 
   public function assingToBand(iBand $nameBand)
   {
-
+    $nameBand->addMusician($this);
   }
-  
 
   public function getInstrument()
   {
