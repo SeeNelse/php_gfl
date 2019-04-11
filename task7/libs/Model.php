@@ -55,7 +55,10 @@ class Model
     $message = "
     First, Last name: $this->name <br>
     E-mail: $this->email <br>
-    Message: $this->textarea";
+    Message: $this->textarea
+    IP: ".$_SERVER['REMOTE_ADDR']."<br>
+    Data: ".date("d.m.Y H:i:s")."
+    ";
     $headers  = "Content-type: text/html; charset=utf-8 \r\n";
     $headers .= "From: <$this->email>\r\n";
     return mail(TO_Email, $subject, $message, $headers);
@@ -100,7 +103,7 @@ class Model
 
   private function textareaCheck($textarea) {
     $textarea = $this->cleaningValues($textarea);
-    if (!$this->lengthCheck($textarea, 1, 1000)) { // поставить 10, 1000
+    if (!$this->lengthCheck($textarea, 10, 1000)) {
       $this->placeholderArr['%ERROR_TEXTAREA%'] = 'Incorrect value';
       return false;
     }
