@@ -22,6 +22,9 @@ forEach($typeArr as $item) {
   }
 }
 
+
+
+
 include 'templates/index_tmpl.php';
 
 ?>

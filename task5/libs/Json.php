@@ -6,7 +6,7 @@ class Json implements iWorkData
 
   public function __construct() 
   {
-    $this->addData = [];
+    $this->addData = (array)json_decode(file_get_contents(JSON_FILE_PATH));
   }
 
   public function saveData($key, $val)
@@ -15,8 +15,8 @@ class Json implements iWorkData
     {
       $key = trim($key);
       is_string($val) ? $val = trim($val) : false;
-
       $this->addData += array($key => $val);
+
       file_put_contents(JSON_FILE_PATH, json_encode($this->addData), JSON_FORCE_OBJECT);
       return true;
     }
