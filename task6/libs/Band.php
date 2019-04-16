@@ -35,7 +35,10 @@ class Band implements iBand
   {
     if (is_object($obj))
     {
-      array_push($this->members, (array)$obj);
+      array_push($this->members, ['name' => $obj->getName(), 
+                                  'instrument' => $obj->getInstrument(), 
+                                  'type' => $obj->getMusicianType(), 
+                                  'front' => $obj->getFront()]);
       return true;
     }
     return false;

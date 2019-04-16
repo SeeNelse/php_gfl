@@ -3,16 +3,18 @@
 class Musician implements iMusician
 {
 
-  public $name;
-  public $instrument;
-  public $type;
-  public $front;
+  private $name;
+  private $instrument;
+  private $type;
+  private $front;
 
   public function __construct() {
     $this->name = '';
     $this->instrument = '';
     $this->type = '';
     $this->front = '';
+
+    $this->array = [];
   }
 
   public function setMember($name, $type, $front) {
@@ -30,7 +32,7 @@ class Musician implements iMusician
   {
     if ($obj) 
     {
-      $this->instrument = array_values((array)$obj)[0];
+      $this->instrument = $obj->getName();
       return true;
     }
     return false;
@@ -62,6 +64,14 @@ class Musician implements iMusician
     if ($this->type)
     {
       return $this->type;
+    }
+  }
+
+  public function getFront()
+  {
+    if ($this->front)
+    {
+      return $this->front;
     }
   }
 }

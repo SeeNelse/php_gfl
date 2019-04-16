@@ -10,34 +10,36 @@ include 'libs/Musician.php';
 include 'libs/Band.php';
 
 
-$instrument1 = new Instrument();
-$instrument1->setName('Bass guitar');
-$instrument1->setCategory('Stringed');
+$instrumentBass = new Instrument();
+$instrumentBass->setName('Bass guitar');
+$instrumentBass->setCategory('Stringed');
 
-$instrument2 = new Instrument();
-$instrument2->setName('Electric guitar');
-$instrument2->setCategory('Stringed');
+$instrumentGuitar = new Instrument();
+$instrumentGuitar->setName('Electric guitar');
+$instrumentGuitar->setCategory('Stringed');
 
-$instrument3 = new Instrument();
-$instrument3->setName('Drumkit');
-$instrument3->setCategory('Drum');
+$instrumentDrum = new Instrument();
+$instrumentDrum->setName('Drumkit');
+$instrumentDrum->setCategory('Drum');
 
-$instrument4 = new Instrument();
-$instrument4->setName('Harmonica');
-$instrument4->setCategory('Aerophone');
+$instrumentHarmonica = new Instrument();
+$instrumentHarmonica->setName('Harmonica');
+$instrumentHarmonica->setCategory('Aerophone');
+
+
 
 
 //band 1
 $member1Weedeather = new Musician();
-$member1Weedeather->addInstrument($instrument1);
+$member1Weedeather->addInstrument($instrumentBass);
 $member1Weedeather->setMember('Dave Collins', 'Bass, vocal', true);
 
 $member2Weedeather = new Musician();
-$member2Weedeather->addInstrument($instrument2);
+$member2Weedeather->addInstrument($instrumentGuitar);
 $member2Weedeather->setMember('Dave Shepherd', 'Electric guitar', false);
 
 $member3Weedeather = new Musician();
-$member3Weedeather->addInstrument($instrument3);
+$member3Weedeather->addInstrument($instrumentDrum);
 $member3Weedeather->setMember('Travis Owen', 'Drumkit', false);
 
 
@@ -55,22 +57,21 @@ $weedeatherMembers = $weedeather->getMusician();
 
 
 
-
 //band 2
 $member1Zeppelin = new Musician();
-$member1Zeppelin->addInstrument($instrument4);
+$member1Zeppelin->addInstrument($instrumentHarmonica);
 $member1Zeppelin->setMember('Robert Plant', 'Vocal', true);
 
 $member2Zeppelin = new Musician();
-$member2Zeppelin->addInstrument($instrument2);
+$member2Zeppelin->addInstrument($instrumentGuitar);
 $member2Zeppelin->setMember('Jimmy Page', 'Electric guitar', false);
 
 $member3Zeppelin = new Musician();
-$member3Zeppelin->addInstrument($instrument1);
+$member3Zeppelin->addInstrument($instrumentBass);
 $member3Zeppelin->setMember('John Paul Jones', 'Bass', false);
 
 $member4Zeppelin = new Musician();
-$member4Zeppelin->addInstrument($instrument3);
+$member4Zeppelin->addInstrument($instrumentDrum);
 $member4Zeppelin->setMember('John Bonham', 'Drumkit', false);
 
 
